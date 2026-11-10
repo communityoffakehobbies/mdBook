@@ -7,12 +7,13 @@ defaults:
   run:
     shell: bash
 
-permissions:
-  contents: write
+permissions: {}
 
 jobs:
   release:
     runs-on: ${{ matrix.os }}
+    permissions:
+      contents: write
     strategy:
       matrix:
         include:
@@ -46,6 +47,8 @@ jobs:
   pages:
     name: GitHub Pages
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
     - name: Install Rust (rustup)
